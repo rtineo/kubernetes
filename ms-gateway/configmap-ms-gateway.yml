@@ -13,13 +13,13 @@ data:
             - id: ms-participantes
               uri: lb://ms-participantes
               predicates:
-                - Path=/api1/**
+                - Path=/api2/**
               filters:
                 - StripPrefix=1
             - id: ms-eventos
               uri: lb://ms-eventos
               predicates:
-                - Path=/api2/**
+                - Path=/api1/**
               filters:
                 - StripPrefix=1
     server:

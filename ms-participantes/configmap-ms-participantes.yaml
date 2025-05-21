@@ -21,18 +21,27 @@ data:
               hibernate:
                   dialect: org.hibernate.dialect.OracleDialect
           show-sql: true
+      profiles:
+            active: dev
+      cloud:
+        kubernetes:
+          discovery:
+            enabled: true
+            all-namespaces: true
+          secrets:
+            enable-api: true
     management:
       endpoints:
         web:
           exposure:
             include: "*"
-      endpoint:
-        health:
-          show-details: always
-          probes:
-            enabled: true
       health:
-        livenessstate:
-          enabled: true
         readinessstate:
           enabled: true
+        livenessstate:
+          enabled: true
+      endpoint:
+        health:
+          probes:
+            enabled: true
+          show-details: always

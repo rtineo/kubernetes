@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ms-participantes
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ms-participantes
@@ -23,16 +23,16 @@ spec:
           httpGet:
             path: /actuator/health/liveness
             port: 9091
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 15
-          timeoutSeconds: 3
+          timeoutSeconds: 10
         readinessProbe:
           httpGet:
             path: /actuator/health/readiness
             port: 9091
-          initialDelaySeconds: 15
-          periodSeconds: 10
-          timeoutSeconds: 3
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 10
         env:
         - name: DB_USERNAME
           valueFrom:
@@ -46,11 +46,11 @@ spec:
               key: DB_PASSWORD
         resources:
           requests:
-            cpu: "200m"
-            memory: "200Mi"
+            cpu: "400m"
+            memory: "400Mi"
           limits:
-            cpu: "300m"
-            memory: "300Mi"
+            cpu: "600m"
+            memory: "600Mi"
         volumeMounts:
           - name: config-volume
             mountPath: /config/application.yml
